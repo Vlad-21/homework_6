@@ -3,9 +3,30 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main.css">
     <title>Get Repositories</title>
 </head>
 <body>
+    <main class="container">
+        <header class="header">
+            <img class="header__logo" src="./assets/git_hub_logo.svg" />
+            <div class="header__title-cont">
+                <h1 class="header__title-cont__name">Vlad</h1>
+                <h2 class="header__title-cont__description">Web Developer</h2>
+            </div>
+        </header>
+        <div class="main-container">
+            <div class="main-container__search-bar">
+                <input class="main-container__search-bar--input" type="text" placeholder="Write user name" />
+            </div>
+            <div class="main-container__user-repo"></div>
+            <div class="loader">
+                <div class="loader__load">
+                    <div class="loader__load--circle"></div>
+                </div>
+            </div>
+        </div>
+    </main>
     <script src="./main.js"></script>
 </body>
 </html>
