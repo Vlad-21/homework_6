@@ -7,12 +7,15 @@ input.addEventListener('change', (event) => {
 
 async function getUserRepositories(userName) {
     const url = `https://api.github.com/users/${userName}/repos`;
-    let data;
     await fetch(url, {
         method: 'get',
     }).then((response) => {
         response.json().then(reasponseData => {
-            data = reasponseData;
+            let data = reasponseData;
+            if (data?.message === "Not Found") {
+                notFound();
+                return;
+            }
             clearData();
             addRepository(data);
         }).catch(e => {
@@ -28,6 +31,8 @@ getUserRepositories();
 
 function addRepository(array) {
     let container = document.querySelector('.main-container__user-repo');
+    container.style.display = 'grid';
+    container.style.alignItems = 'start';
     for (let item of array) {
         let element = document.createElement('a');
         element.href = item.svn_url;
@@ -62,6 +67,17 @@ function clearData() {
     while(container.firstChild) {
         container.removeChild(container.firstChild);
     };
+}
+
+
+function notFound() {
+    let container = document.querySelector('.main-container__user-repo');
+    container.style.display = 'flex';
+    container.style.alignItems = 'center';
+    container.innerHTML = `
+        <h1>User not found</h1>
+    `;
+    loader(false);
 }
 
 
